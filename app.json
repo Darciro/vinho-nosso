@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "vinho-nosso",
+    "slug": "vinho-nosso",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "vinho-nosso"
+}
