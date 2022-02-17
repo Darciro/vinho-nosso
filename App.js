@@ -1,21 +1,56 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import {View, Text} from 'react-native';
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {Appbar, DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import Home from './src/views/Home';
+
+const theme = {
+    ...DefaultTheme,
+    roundness: 2,
+    colors: {
+        ...DefaultTheme.colors,
+        primary: '#B91646',
+        accent: '#DFD8CA',
+        surface: '#FBF3E4',
+        text: '#105652',
+    },
+};
+
+
+function List() {
+    const navigation = useNavigation();
+
+    return (
+        <>
+            <Appbar.Header>
+                <Appbar.BackAction/>
+                <Appbar.Content title="Title" subtitle="Subtitle"/>
+                <Appbar.Action icon="magnify"/>
+                <Appbar.Action icon="dots-vertical"/>
+            </Appbar.Header>
+
+            <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                <Text>Página #2</Text>
+            </View>
+        </>
+    );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const Stack = createNativeStackNavigator();
+
+function App() {
+    return (
+        <PaperProvider theme={theme}>
+            <NavigationContainer>
+                <Stack.Navigator>
+                    <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/>
+                    <Stack.Screen name="List" component={List} options={{headerShown: false}}/>
+                </Stack.Navigator>
+            </NavigationContainer>
+        </PaperProvider>
+    );
+}
+
+export default App;
