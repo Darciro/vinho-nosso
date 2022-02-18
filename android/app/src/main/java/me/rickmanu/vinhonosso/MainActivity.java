@@ -1,4 +1,4 @@
-package com.vinhonosso;
+package me.rickmanu.vinhonosso;
 
 import android.os.Build;
 import android.os.Bundle;
