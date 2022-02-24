@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { View } from "react-native";
 import {ActivityIndicator, Appbar} from 'react-native-paper';
-import AppbarBottom from "../components/AppbarBottom";
 
 export default function Search({route, navigation}) {
     return (
@@ -11,8 +10,7 @@ export default function Search({route, navigation}) {
                 <Appbar.Content title="Buscar" subtitle="Por favor aguarde um instante"/>
             </Appbar.Header>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <ActivityIndicator animating={true} color="#b91646" size="larger" />
-                <AppbarBottom />
+                <ActivityIndicator animating={true} color="#89023E" size="larger" />
             </View>
         </>
     )

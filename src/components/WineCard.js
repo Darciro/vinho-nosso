@@ -1,31 +1,17 @@
 import * as React from 'react';
 import {Button, Card, FAB, Paragraph, Surface, Title, TouchableRipple} from "react-native-paper";
-import {Rating} from "react-simple-star-rating";
 import {StyleSheet, View} from "react-native";
 import {useNavigation} from "@react-navigation/native";
-import {useFonts} from "expo-font";
-import AppLoading from "expo-app-loading";
 
-export default function WhineCard(props) {
-    const {id, title, type, origin, price, rate, thumb} = props;
+export default function WineCard(props) {
+    const {id, name, type, origin, price, rate, image} = props;
     const navigation = useNavigation();
-
-    /*const [fontsLoaded] = useFonts({
-        'Lato_100Thin': require('../../assets/fonts/Lato_100Thin.ttf'),
-        'Lato_300Light': require('../../assets/fonts/Lato_300Light.ttf'),
-        'Lato_400Regular': require('../../assets/fonts/Lato_400Regular.ttf'),
-        'Lato_700Bold': require('../../assets/fonts/Lato_700Bold.ttf')
-    });*/
-
-    /*if (!fontsLoaded) {
-        return <AppLoading />;
-    }*/
 
     return (
         <Surface style={styles.cardWrapper}>
             <TouchableRipple rippleColor="rgba(0, 0, 0, .32)" onPress={url => navigation.navigate('Whine', {id: id})}>
                 <Card style={styles.card}>
-                    <Card.Cover source={{uri: thumb}}/>
+                    <Card.Cover source={{uri: image}}/>
                     <FAB
                         style={styles.like}
                         small
@@ -34,7 +20,7 @@ export default function WhineCard(props) {
                         onPress={() => console.log('Pressed')}
                     />
                     <Card.Content style={{padding: 20, borderTopLeftRadius: 30, borderTopRightRadius: 30, overflow: 'hidden'}}>
-                        <Title style={{fontFamily: 'Lato_700Bold'}}>{title}</Title>
+                        <Title style={{fontFamily: 'Lato_700Bold'}}>{name}</Title>
                         <View style={styles.containerCols}>
                             <View style={{flex: 1}}>
                                 <Button icon="currency-eur"
@@ -74,8 +60,8 @@ export default function WhineCard(props) {
 
 const styles = StyleSheet.create({
     cardWrapper: {
-        marginBottom: 20,
-        borderRadius: 20,
+        marginBottom: 10,
+        // borderRadius: 20,
         overflow: 'hidden',
         elevation: 4,
     },
@@ -86,7 +72,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 20,
         right: 20,
-        backgroundColor: '#B91646'
+        backgroundColor: '#89023E'
     },
     containerCols: {
         flex: 1,

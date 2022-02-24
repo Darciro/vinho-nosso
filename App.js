@@ -4,24 +4,44 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 import AppLoading from 'expo-app-loading';
 import {useFonts} from 'expo-font';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
+import TabBar from './src/components/TabBar';
 import Home from './src/views/Home';
 import Whine from './src/views/Whine';
 import Search from './src/views/Search';
 import Favorites from './src/views/Favorites';
-import AddWhine from './src/views/AddWhine';
+import WhinePhoto from './src/views/WhinePhoto';
+import WhineDesc from './src/views/WhineDesc';
+import Success from './src/views/Success';
+import Auth from './src/views/Auth';
+
 
 const theme = {
     ...DefaultTheme,
     roundness: 2,
     colors: {
         ...DefaultTheme.colors,
-        primary: '#b91646',
-        accent: '#DFD8CA',
-        surface: '#FBF3E4',
+        primary: '#89023E',
+        accent: '#EBF5EE',
+        surface: '#EBF5EE',
         text: '#105652',
     }
 };
+
+const Tab = createBottomTabNavigator();
+
+function HomeTabs() {
+    return (
+        <Tab.Navigator initialRouteName={"Home"} screenOptions={{headerShown: false}} tabBar={props => <TabBar {...props} />}>
+            <Tab.Screen name="Home" component={Home}/>
+            <Tab.Screen name="Search" component={Search}/>
+            <Tab.Screen name="PlaceholderScreen" component={Home}/>
+            <Tab.Screen name="Favorites" component={Favorites}/>
+            <Tab.Screen name="Auth" component={Auth}/>
+        </Tab.Navigator>
+    );
+}
 
 const Stack = createNativeStackNavigator();
 
@@ -35,18 +55,18 @@ function App() {
     });
 
     if (!fontsLoaded) {
-        return <AppLoading />;
+        return <AppLoading/>;
     }
 
     return (
         <PaperProvider theme={theme}>
             <NavigationContainer>
-                <Stack.Navigator>
-                    <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/>
-                    <Stack.Screen name="Whine" component={Whine} options={{headerShown: false}}/>
-                    <Stack.Screen name="Search" component={Search} options={{headerShown: false}}/>
-                    <Stack.Screen name="Favorites" component={Favorites} options={{headerShown: false}}/>
-                    <Stack.Screen name="AddWhine" component={AddWhine} options={{headerShown: false}}/>
+                <Stack.Navigator initialRouteName={"HomeTabs"} screenOptions={{headerShown: false}}>
+                    <Stack.Screen name="HomeTabs" component={HomeTabs}/>
+                    <Stack.Screen name="Whine" component={Whine}/>
+                    <Stack.Screen name="WhinePhoto" component={WhinePhoto}/>
+                    <Stack.Screen name="WhineDesc" component={WhineDesc}/>
+                    <Stack.Screen name="Success" component={Success}/>
                 </Stack.Navigator>
             </NavigationContainer>
         </PaperProvider>
